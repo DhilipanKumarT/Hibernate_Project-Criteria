@@ -8,8 +8,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-public class EmployeeOperation {
-	@SuppressWarnings({ "unchecked", "removal" })
+public class EmployeeOperation 
+{
+	@SuppressWarnings({ "unchecked" })
 	public static void main(String[] args)
 	{
 		SessionFactory sessionFactory=HibernateUtil.getSesFactory();
@@ -21,21 +22,9 @@ public class EmployeeOperation {
 		{
 			System.out.println("ID="+emp.getId()+emp.getName()+emp.getSalary());
 		}
-		criteria=session.createCriteria(Emoloyee.class).add(Restrictions.eq("id", new Integer(2)));
-		Emoloyee emp=(Emoloyee) criteria.uniqueResult();
-		System.out.println("Name="+emp.getName() );
-		empList=session.createCriteria(Emoloyee.class)
-				.addOrder(Order.desc("id"))
-				.setFirstResult(0)
-				.setMaxResults(2)
-				.list();
-		for(Emoloyee emp4: empList)
-		{
-			System.out.println("Paginated Employees"+emp4.getId()+ emp4.getName());
-		}
-		empList=session.createCriteria(Emoloyee.class)
-				.add(Restrictions.like("name","%m%"))
-				.list();
+		criteria=session.createCriteria(Emoloyee.class);
+		empList=session.createCriteria(Emoloyee.class).addOrder(Order.desc("id")).setFirstResult(0).setMaxResults(2).list();
+		empList=session.createCriteria(Emoloyee.class).add(Restrictions.like("name","%m%")).list();
 		for(Emoloyee emp4:empList)
 		{
 			System.out.println("Employee having 'm' in name::"+emp4.getName());
@@ -51,10 +40,3 @@ public class EmployeeOperation {
 		sessionFactory.close();
 		}
 }
-
-		
-		
-		
-		
-		
-	

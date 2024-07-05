@@ -1,2 +1,3 @@
-# Maven_Project1
-For Validating and retrieving the Employee Details
+# Hibernate_Project-Criteria
+
+Retrieving the Employee Details through simplified API(Criteria)

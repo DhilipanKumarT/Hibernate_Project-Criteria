@@ -1,31 +1,23 @@
 package com.model;
-
 import org.hibernate.SessionFactory;
-//import org.hibernate.boot.Metadata;
-//import org.hibernate.boot.MetadataSources;
-//import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-
-public class HibernateUtil {
-	//private static StandardServiceRegistry registry=null;
+public class HibernateUtil 
+{
 	private static SessionFactory sf;
-      
-	public static SessionFactory buildFactory() {		
-			try {
-				
-		//	registry=new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-			//MetadataSources mds=new MetadataSources(registry);
-			//Metadata md=mds.getMetadataBuilder().build();
+	public static SessionFactory buildFactory()
+	{		
+			try 
+		        {
 			Configuration cfg=new Configuration();
-		
 			cfg.configure("hibernate.cfg.xml");
 			ServiceRegistry sr= new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();	
 			SessionFactory sf=cfg.buildSessionFactory(sr);
 			return sf;
 		}
-		catch(Exception e) {
+		catch(Exception e)
+	        {
 			e.printStackTrace();
 			throw new ExceptionInInitializerError(e);
 		}
@@ -36,7 +28,4 @@ public class HibernateUtil {
 			sf=buildFactory();
 		return sf;
 	}
-		
-	}
-
-
+}
